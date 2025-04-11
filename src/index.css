@@ -1,0 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --fonte-titulos: 'Montserrat', sans-serif;
+  --cor-fonte-titulos: #54948f;
+  --fonte-paragrafos: 'Roboto', sans-serif;
+  --cor-fonte-paragrafos: #1b2027;
+  --cor-primaria: gray;
+  --branco: white;
+  --preto: black;
+}

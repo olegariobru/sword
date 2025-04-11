@@ -1,0 +1,67 @@
+/* index.module.css */
+
+.backBan {
+    min-height: 100vh;
+    background: #f6f8fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .titBan a {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--cor-fonte-titulos);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    display: block;
+  }
+  
+  .inputsBan {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .inputsBan label {
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  .inputsBan input {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .inputsBan input:focus {
+    border-color: #3498db;
+  }
+  
+  .buttonBan {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .buttonBan:hover {
+    background: #2980b9;
+  }
+  

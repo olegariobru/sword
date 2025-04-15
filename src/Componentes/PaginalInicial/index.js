@@ -1,11 +1,10 @@
-import Login from "../BannerLogin";
-
+import LoginBan from "../BannerLogin";
 
 export default function PaginaHome(){
     
     return(
         <main>
-            <Login/>
+            <LoginBan/>
         </main>
     )
 }

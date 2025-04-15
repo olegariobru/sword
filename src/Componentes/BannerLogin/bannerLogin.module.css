@@ -1,8 +1,7 @@
-/* index.module.css */
 
 .backBan {
     min-height: 100vh;
-    background: #f6f8fa;
+    background: var(--branco);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,10 +20,10 @@
   }
   
   .inputsBan {
-    background: #ffffff;
+    background: var(--branco);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px var(--preto);
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -34,12 +33,12 @@
   
   .inputsBan label {
     font-size: 0.95rem;
-    color: #333;
+    color: var(--cor-primaria);
   }
   
   .inputsBan input {
     padding: 0.75rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--cor-primaria);
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
@@ -47,21 +46,30 @@
   }
   
   .inputsBan input:focus {
-    border-color: #3498db;
+    border-color: var(--detalhe);
   }
   
   .buttonBan {
-    background: var(--secondary-color);
-    color: white;
+    background: var(--branco);
+    color: var();
     border: none;
     padding: 0.8rem;
     border-radius: 8px;
+    border-color: var(--detalhe);
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .buttonBan:hover {
-    background: #2980b9;
+    background: var(--cor-fonte-titulos);
+    color: var(--branco);
   }
+
+  .errorMsg {
+    color: var(--erro);
+    margin-top: 10px;
+    font-size: 14px;
+}
+
   

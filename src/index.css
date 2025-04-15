@@ -6,10 +6,12 @@
 
 :root{
   --fonte-titulos: 'Montserrat', sans-serif;
-  --cor-fonte-titulos: #54948f;
   --fonte-paragrafos: 'Roboto', sans-serif;
+  --cor-fonte-titulos: #54948f;
+  --detalhe: #8B008B;
   --cor-fonte-paragrafos: #1b2027;
   --cor-primaria: gray;
   --branco: white;
   --preto: black;
+  --erro: red;
 }

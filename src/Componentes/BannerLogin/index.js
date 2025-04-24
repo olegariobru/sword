@@ -28,26 +28,25 @@ export default function LoginBan() {
 
     return (
         <div className={styles.backBan}>
-            <div className={styles.titBan}>
-                <a>Center User</a>
-            </div>
 
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputsBan}>
-                    <label htmlFor="email">E-mail ou usuário:</label>
+                    <div className={styles.titBan}>
+                        <a>Center User</a>
+                    </div>
                     <input
                         type="text"
                         id="email"
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Digite seu e-mail ou usuário:"
+                        placeholder="Usuário:"
                     />
 
-                    <label htmlFor="senha">Senha:</label>
+                   
                     <input
                         type="password"
                         id="senha"
                         onChange={(e) => setSenha(e.target.value)}
-                        placeholder="Digite sua senha:"
+                        placeholder="Senha:"
                     />
 
                     {erro && <p className={styles.erroMSG}>{erro}</p>}

@@ -12,6 +12,7 @@
   --cor-fonte-paragrafos: #1b2027;
   --cor-primaria: gray;
   --branco: white;
+  --branco-opaco: rgba(255, 255, 255, 0.85);
   --preto: black;
   --erro: red;
 }

@@ -14,5 +14,6 @@
   --branco: white;
   --branco-opaco: rgba(255, 255, 255, 0.85);
   --preto: black;
+  --vermelho-site: #8B0000;
   --erro: red;
 }

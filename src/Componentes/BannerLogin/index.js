@@ -1,34 +1,34 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import styles from "./bannerLogin.module.css";
 import { loginUser } from "../../Services/Auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginBan() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [erro, setErro] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!email.trim() || !senha.trim()) {
-            setErro("Por favor, preencha todos os campos");
+            toast.warn("Por favor, preencha todos os campos");
             return;
         }
 
         const result = await loginUser(email, senha);
 
         if (result.error) {
-            setErro("Email ou senha incorretos");
+            toast.error("Email ou senha incorretos");
         } else {
-            navigate("/telaDeEntrada");
+            navigate("/telaDeEntrada", {replace:true});
         }
     };
 
     return (
         <div className={styles.backBan}>
-
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputsBan}>
                     <div className={styles.titBan}>
@@ -40,20 +40,31 @@ export default function LoginBan() {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Usuário:"
                     />
-
-                   
                     <input
                         type="password"
                         id="senha"
                         onChange={(e) => setSenha(e.target.value)}
                         placeholder="Senha:"
                     />
-
-                    {erro && <p className={styles.erroMSG}>{erro}</p>}
-
                     <button type="submit" className={styles.buttonBan}>Entrar</button>
+                    <div className={styles.containerNewForgot}>
+                        <p className={styles.forgotPass}> Esqueceu sua senha? {""}<span className={styles.clickable} onClick={() => navigate ("/recuperarSenha", {replace: true})}>Clique aqui!</span></p>
+                        <p className={styles.newClient}>Novo aqui? {""}<span className={styles.clickable} onClick={() => navigate ("/cadastroUser", {replace: true})}>Cadastre-se!</span></p>
+                    </div>
+                
                 </div>
             </form>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 }

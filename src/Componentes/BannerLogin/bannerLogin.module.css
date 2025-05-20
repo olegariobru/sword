@@ -2,7 +2,7 @@
   .backBan {
     width: 100vw;
     height: 100vh;
-    background-image: url('/public/Imagens/image\ 8.png');
+    background-image: url('/public/Imagens/imagebackgr.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -11,14 +11,20 @@
     align-items: center;
   }
 
+ 
   
   .titBan a {
     font-size: 2rem;
     font-weight: 600;
-    color: var(--cor-fonte-titulos);
+    justify-content: center;
+    align-items: center;
+    margin: 45% 0 0 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 150;
+    color: var(--vermelho-site);
     text-decoration: none;
     margin-bottom: 2rem;
-    display: block;
+    display: flex;
   }
   
   .inputsBan {
@@ -39,7 +45,7 @@
     border: none;
     background: none;
     border-bottom: 1px solid var(--cor-primaria);
-    font-size: 1rem;
+    font-size: 0.9rem;
     outline: none;
     transition: border 0.3s;
   }
@@ -49,19 +55,18 @@
   }
   
   .buttonBan {
-    background: var(--branco);
-    color: var();
+    background: var(--branco-opaco);
     border: none;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border-color: var(--detalhe);
+    margin: 15% 0 0 0;
+    padding: 0.9rem;
+    border-radius: 80px;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .buttonBan:hover {
-    background: var(--cor-fonte-titulos);
+    background: var(--vermelho-site);
     color: var(--branco);
   }
 
@@ -69,6 +74,31 @@
     color: var(--erro);
     margin-top: 10px;
     font-size: 14px;
-}
+  }
+  .clickable{
+    color: var(--vermelho-site);
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
 
+  .clickable:hover{
+    color: var(--cor-primaria);
+  }
+
+  .forgotPass{
+    font-family: var(--fonte-paragrafos);
+    font-size: 15px;
+    color: var(--cor-primaria);
+    padding: 5% 0 0 0;
+    margin: 0;
+  }
+
+  .newClient{
+    font-family: var(--fonte-paragrafos);
+    font-size: 15px;
+    color: var(--cor-primaria);
+    padding: 5% 0 0 0;
+    margin: 0;
+  }
   

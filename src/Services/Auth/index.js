@@ -1,3 +1,4 @@
+
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase"; 
@@ -13,22 +14,21 @@ export const loginUser = async (email, senha) => {
 };
 
 // Função de cadastro no firebase
-
+// Services/Auth.js
 export const registerUser = async (email, senha, nome) => {
-  try{
-    const userCredential = await createUserWithEmailAndPassword (auth, email, senha);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
     const user = userCredential.user;
 
-    //grava as informações dentro do firestore
-
-    await setDoc(doc(db, "users", user.uid),{
+    await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       email: user.email,
-      name: nome, 
+      name: nome,
       createAt: serverTimestamp(),
     });
-    return{ user };
-  } catch(error){
-    return{ error: error.message };
+
+    return { user, error: null }; // ✅ CORREÇÃO IMPORTANTE
+  } catch (error) {
+    return { user: null, error: error.message }; // ✅ GARANTE CONSISTÊNCIA
   }
 };

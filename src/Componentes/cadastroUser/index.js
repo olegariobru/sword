@@ -1,32 +1,45 @@
 import React, { useState } from "react";
 import { registerUser } from "../../Services/Auth";
 import styles from "./cadastrouser.module.css";
+import { toast } from "react-toastify";
 
 const CadastroUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [status, setStatus] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    if (!name || !email || !senha) {
+      toast.error("Preencha todos os campos.");
+      return;
+    }
+  
     const { user, error } = await registerUser(email, senha, name);
+  
     if (error) {
-      setStatus(`Erro: ${error}`);
+      if (error.includes("auth/email-already-in-use")) {
+        toast.error("E-mail já cadastrado.");
+      } else if (error.includes("auth/invalid-email")) {
+        toast.error("E-mail inválido.");
+      } else {
+        toast.error("Erro ao cadastrar: " + error);
+      }
     } else {
-      setStatus("Usuário cadastrado com sucesso!");
+      console.log("Entrou no else: cadastro com sucesso");
+      toast.success("Usuário cadastrado com sucesso!");
       setName("");
       setEmail("");
       setSenha("");
     }
   };
+  
 
   return (
     <div className={styles.cadastroContainer}>
-      <form className={styles.formWrapper} onSubmit={handleSubmit}>
+      <form noValidate className={styles.formWrapper} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Center User</h2>
 
-        <label className={styles.label}>Usuário:</label>
         <input
           className={styles.inputField}
           type="text"
@@ -36,7 +49,6 @@ const CadastroUser = () => {
           required
         />
 
-        <label className={styles.label}>E-mail:</label>
         <input
           className={styles.inputField}
           type="email"
@@ -46,7 +58,6 @@ const CadastroUser = () => {
           required
         />
 
-        <label className={styles.label}>Senha:</label>
         <input
           className={styles.inputField}
           type="password"
@@ -59,16 +70,9 @@ const CadastroUser = () => {
         <button className={styles.buttonCadastro} type="submit">
           Entrar
         </button>
-
-        <div className={styles.linkSection}>
-          Esqueceu sua senha? <a href="#">Clique aqui!</a><br />
-          Novo aqui? <a href="#">Cadastre-se!</a>
-        </div>
-
-        {status && <p className={styles.statusMsg}>{status}</p>}
       </form>
     </div>
   );
 };
 
-export default CadastroUser
+export default CadastroUser;

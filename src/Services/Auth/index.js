@@ -1,9 +1,14 @@
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  updateProfile
+} from "firebase/auth";
+import { auth } from "../firebase"; 
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../firebase"; 
 
-//validação do usuario e senha no firebase
+
+
+// Função de login
 export const loginUser = async (email, senha) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, senha);
@@ -13,22 +18,31 @@ export const loginUser = async (email, senha) => {
   }
 };
 
-// Função de cadastro no firebase
-// Services/Auth.js
-export const registerUser = async (email, senha, nome) => {
+export const registerUser = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
-    const user = userCredential.user;
+    const response = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCKYhDwHAEgZrS0pbtdfUH-qRQnaOZYMBo`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          returnSecureToken: true
+        }),
+      }
+    );
 
-    await setDoc(doc(db, "users", user.uid), {
-      uid: user.uid,
-      email: user.email,
-      name: nome,
-      createAt: serverTimestamp(),
-    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error.message);
+    }
 
-    return { user, error: null }; // ✅ CORREÇÃO IMPORTANTE
+    return await response.json();
   } catch (error) {
-    return { user: null, error: error.message }; // ✅ GARANTE CONSISTÊNCIA
+    console.error("Erro detalhado:", error);
+    throw error;
   }
 };

@@ -4,36 +4,34 @@ import styles from "./cadastrouser.module.css";
 import { toast } from "react-toastify";
 
 const CadastroUser = () => {
-  const [name, setName] = useState("");
+  const [nome, setNome] = useState(""); 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    if (!name || !email || !senha) {
-      toast.error("Preencha todos os campos.");
+    // Validações básicas
+    if (!email.includes('@') || !email.includes('.')) {
+      toast.error('E-mail inválido');
       return;
     }
   
-    const { user, error } = await registerUser(email, senha, name);
+    if (senha.length < 6) {
+      toast.error('Senha deve ter no mínimo 6 caracteres');
+      return;
+    }
   
+    const { error } = await registerUser(email, senha, nome);
+    
     if (error) {
-      if (error.includes("auth/email-already-in-use")) {
-        toast.error("E-mail já cadastrado.");
-      } else if (error.includes("auth/invalid-email")) {
-        toast.error("E-mail inválido.");
-      } else {
-        toast.error("Erro ao cadastrar: " + error);
-      }
+      toast.error(`Erro: ${error}`);
+
     } else {
-      console.log("Entrou no else: cadastro com sucesso");
-      toast.success("Usuário cadastrado com sucesso!");
-      setName("");
-      setEmail("");
-      setSenha("");
+      console.log("passou")
+      toast.success('Cadastro realizado!');
     }
   };
-  
 
   return (
     <div className={styles.cadastroContainer}>
@@ -44,8 +42,8 @@ const CadastroUser = () => {
           className={styles.inputField}
           type="text"
           placeholder="Digite seu nome"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
           required
         />
 

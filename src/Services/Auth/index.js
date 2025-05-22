@@ -5,44 +5,62 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase"; 
 
-
-
-
 // Função de login
 export const loginUser = async (email, senha) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, senha);
-    return { user: userCredential.user };
+    return { user: userCredential.user, error: null };
   } catch (error) {
-    return { error: error.message };
+    let message;
+
+    switch (error.code) {
+      case 'auth/user-not-found':
+        message = 'Usuário não encontrado';
+        break;
+      case 'auth/wrong-password':
+        message = 'Senha incorreta';
+        break;
+      case 'auth/invalid-email':
+        message = 'E-mail inválido';
+        break;
+      case 'auth/too-many-requests':
+        message = 'Muitas tentativas. Tente novamente mais tarde';
+        break;
+      default:
+        message = 'Erro ao fazer login';
+    }
+
+    return { user: null, error: message };
   }
 };
 
-export const registerUser = async (email, password) => {
+// Função de registro
+export const registerUser = async (email, senha, nome) => {
   try {
-    const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCKYhDwHAEgZrS0pbtdfUH-qRQnaOZYMBo`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          returnSecureToken: true
-        }),
-      }
-    );
+    const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error.message);
+    await updateProfile(userCredential.user, {
+      displayName: nome,
+    });
+
+    return { user: userCredential.user, error: null };
+  } catch (error) {
+    let errorMessage;
+
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        errorMessage = 'Este e-mail já está em uso';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'E-mail inválido';
+        break;
+      case 'auth/weak-password':
+        errorMessage = 'Senha fraca (mínimo 6 caracteres)';
+        break;
+      default:
+        errorMessage = 'Erro ao cadastrar';
     }
 
-    return await response.json();
-  } catch (error) {
-    console.error("Erro detalhado:", error);
-    throw error;
+    return { user: null, error: errorMessage };
   }
 };

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./bannerLogin.module.css";
 import { loginUser } from "../../Services/Auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginBan() {
@@ -14,32 +14,29 @@ export default function LoginBan() {
         e.preventDefault();
 
         if (!email.trim() || !senha.trim()) {
-            toast.warn("Por favor, preencha todos os campos");
+            toast.warn("Por favor, preencha todos os campos", {
+                position: "top-center",
+                autoClose: 3000,
+                theme: "colored"
+            });
             return;
         }
 
-        const result = await loginUser(email, senha);
+        const { user, error } = await loginUser(email, senha);
 
-        if (result.errorCode) {
-            switch (result.errorCode) {
-                case "auth/user-not-found":
-                    toast.error("Usuário não encontrado");
-                    break;
-                case "auth/wrong-password":
-                    toast.error("Senha incorreta");
-                    break;
-                case "auth/invalid-email":
-                    toast.error("Email inválido");
-                    break;
-                case "auth/too-many-requests":
-                    toast.error("Muitas tentativas. Tente novamente mais tarde.");
-                    break;
-                default:
-                    toast.error("Erro ao fazer login");
-            }
+        if (error) {
+            toast.error(error, {
+                position: "top-center",
+                autoClose: 3000,
+                theme: "colored"
+            });
         } else {
-            toast.success("Login realizado com sucesso!");
-            navigate("/telaDeEntrada", { replace: true });
+            toast.success("Login realizado com sucesso!", {
+                position: "top-center",
+                autoClose: 2000,
+                theme: "colored",
+                onClose: () => navigate("/telaDeEntrada", { replace: true })
+            });
         }
     };
 
@@ -56,6 +53,7 @@ export default function LoginBan() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Usuário:"
+                        className={styles.inputBan}
                     />
                     <input
                         type="password"
@@ -63,6 +61,7 @@ export default function LoginBan() {
                         value={senha}
                         onChange={(e) => setSenha(e.target.value)}
                         placeholder="Senha:"
+                        className={styles.inputBan}
                     />
                     <button type="submit" className={styles.buttonBan}>Entrar</button>
                     <div className={styles.containerNewForgot}>
@@ -81,17 +80,6 @@ export default function LoginBan() {
                     </div>
                 </div>
             </form>
-            <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
         </div>
     );
 }

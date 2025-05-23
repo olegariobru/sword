@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { registerUser } from "../../Services/Auth";
+import { useNavigate } from "react-router-dom";
 import styles from "./cadastrouser.module.css";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +10,7 @@ const CadastroUser = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+  const navigate = useNavigate ();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,8 +55,12 @@ const CadastroUser = () => {
 
   return (
     <div className={styles.cadastroContainer}>
-      <form noValidate className={styles.formWrapper} onSubmit={handleSubmit}>
-        <h2 className={styles.title}>Center User</h2>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.inputsBanCad}>
+
+          <div className={styles.titbanCad}>
+            <a className={styles.title}>Center User</a>
+          </div>
 
         <input
           className={styles.inputField}
@@ -95,6 +101,22 @@ const CadastroUser = () => {
         <button className={styles.buttonCadastro} type="submit">
           Cadastrar
         </button>
+
+           <div className={styles.containerNewForgotCad}>
+              <p className={styles.forgotPassCad}>
+                              Esqueceu sua senha?{" "}
+                <span className={styles.clickableCad} onClick={() => navigate("/recuperarSenha", { replace: true })}>
+                              Clique aqui!
+                </span>
+              </p>
+              <p className={styles.newClientCad}>
+                              Ja tem conta?{" "}
+                <span className={styles.clickableCad} onClick={() => navigate("/LoginBan")}>
+                              Clique aqui!
+                </span>
+              </p>
+           </div>
+        </div>
       </form>
     </div>
   );

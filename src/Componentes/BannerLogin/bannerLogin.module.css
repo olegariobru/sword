@@ -68,11 +68,7 @@
     color: var(--branco);
   }
 
-  .errorMsg {
-    color: var(--erro);
-    margin-top: 10px;
-    font-size: 14px;
-  }
+
   .clickable{
     color: var(--vermelho-site);
     cursor: pointer;

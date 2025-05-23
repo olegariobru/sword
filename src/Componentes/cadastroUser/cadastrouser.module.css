@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.title{
+.titbanCad a{
   font-size: 2rem;
   font-weight: 600;
   justify-content: center;
@@ -22,9 +22,11 @@
   text-decoration: none;
   margin-bottom: 2rem;
   display: flex;
+
 }
 
-.formWrapper{
+
+.inputsBanCad{
   background: var(--branco-opaco);
   padding: 3rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -36,7 +38,7 @@
   gap: 1.2rem;
 }
 
-.formWrapper input {
+.inputsBanCad input{
   padding: 0.75rem;
   border: none;
   background: none;
@@ -46,14 +48,14 @@
   transition: border 0.3s;
 }
 
-.formWrapper input:focus {
+.inputsBanCad input:focus {
   border-color: var(--detalhe);
 }
 
 .buttonCadastro {
   background: var(--branco-opaco);
   border: none;
-  margin: 15% 0 0 0;
+  margin: 5% 0 0 0;
   padding: 0.9rem;
   border-radius: 80px;
   font-size: 1rem;
@@ -61,7 +63,34 @@
   transition: background 0.3s;
 }
 
-.buttonCadastro:hover {
+.buttonCadastro:hover{
   background: var(--vermelho-site);
   color: var(--branco);
+}
+
+.clickableCad{
+  color: var(--vermelho-site);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.clickableCad:hover{
+  color: var(--cor-primaria);
+}
+
+.forgotPassCad{
+  font-family: var(--fonte-paragrafos);
+  font-size: 15px;
+  color: var(--cor-primaria);
+  padding: 5% 0 0 0;
+  margin: 0;
+}
+
+.newClientCad{
+  font-family: var(--fonte-paragrafos);
+  font-size: 15px;
+  color: var(--cor-primaria);
+  padding: 5% 0 0 0;
+  margin: 0;
 }

@@ -37,6 +37,10 @@ export const loginUser = async (email, senha) => {
 // Função de registro
 export const registerUser = async (email, senha, nome) => {
   try {
+    const regexSenhaSegura = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+    if (!regexSenhaSegura.test(senha)) {
+      return { user: null, error: 'A senha deve conter pelo menos 6 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.' };
+    }
     const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
 
     await updateProfile(userCredential.user, {

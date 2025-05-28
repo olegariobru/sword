@@ -49,7 +49,7 @@
   }
   
   .inputsBan input:focus {
-    border-color: var(--detalhe);
+    border-color: var(--vermelho-site);
   }
   
   .buttonBan {

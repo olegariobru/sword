@@ -3,6 +3,7 @@ import { registerUser } from "../../Services/Auth";
 import { useNavigate } from "react-router-dom";
 import styles from "./cadastrouser.module.css";
 import { toast } from "react-toastify";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import 'react-toastify/dist/ReactToastify.css';
 
 const CadastroUser = () => {
@@ -10,11 +11,13 @@ const CadastroUser = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  const navigate = useNavigate ();
+  const [visivelSenha, setVisivelSenha] = useState(false);
+  const [visivelConfirmar, setVisivelConfirmar] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!nome || !email || !senha || !confirmarSenha) {
       toast.error("Preencha todos os campos", { position: "top-center" });
       return;
@@ -36,11 +39,11 @@ const CadastroUser = () => {
     }
 
     const { user, error } = await registerUser(email, senha, nome);
-  
+
     if (error) {
       toast.error(error, { position: "top-center" });
     } else {
-      toast.success("Cadastro realizado com sucesso!", { 
+      toast.success("Cadastro realizado com sucesso!", {
         position: "top-center",
         autoClose: 2000,
         onClose: () => {
@@ -48,6 +51,7 @@ const CadastroUser = () => {
           setEmail("");
           setSenha("");
           setConfirmarSenha("");
+          navigate("/LoginBan");
         }
       });
     }
@@ -55,67 +59,87 @@ const CadastroUser = () => {
 
   return (
     <div className={styles.cadastroContainer}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <div className={styles.inputsBanCad}>
-
           <div className={styles.titbanCad}>
             <a className={styles.title}>Center User</a>
           </div>
 
-        <input
-          className={styles.inputField}
-          type="text"
-          placeholder="Digite seu nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          required
-        />
+          <input
+            className={styles.inputField}
+            type="text"
+            placeholder="Digite seu nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            
+          />
 
-        <input
-          className={styles.inputField}
-          type="email"
-          placeholder="Digite seu e-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          <input
+            className={styles.inputField}
+            type="email"
+            placeholder="Digite seu e-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            
+          />
 
-        <input
-          className={styles.inputField}
-          type="password"
-          placeholder="Digite sua senha (mínimo 6 caracteres)"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
+          
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.inputField}
+              type={visivelSenha ? "text" : "password"}
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              
+            />
+            <span
+              className={styles.iconePass}
+              onClick={() => setVisivelSenha(!visivelSenha)}
+              title={visivelSenha ? "Ocultar senha" : "Mostrar senha"}
+            >
+              {visivelSenha ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+            </span>
+            </div>
 
-        <input
-          className={styles.inputField}
-          type="password"
-          placeholder="Confirme sua senha"
-          value={confirmarSenha}
-          onChange={(e) => setConfirmarSenha(e.target.value)}
-          required
-        />
+            <div className={styles.legPassword}>
+                <p className={styles.legPassCreate}>(Mínimo 6 caracteres, 1 Maiuscula, 1 minuscula, 1 especial e 1 número)</p>
+            </div>
 
-        <button className={styles.buttonCadastro} type="submit">
-          Cadastrar
-        </button>
+          
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.inputField}
+              type={visivelConfirmar ? "text" : "password"}
+              placeholder="Confirme sua senha"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+              
+            />
+            <span
+              className={styles.iconePass}
+              onClick={() => setVisivelConfirmar(!visivelConfirmar)}
+              title={visivelConfirmar ? "Ocultar senha" : "Mostrar senha"}
+            >
+              {visivelConfirmar ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+            </span>
+          </div>
 
-           <div className={styles.containerNewForgotCad}>
-              <p className={styles.forgotPassCad}>
-                              Esqueceu sua senha?{" "}
-                <span className={styles.clickableCad} onClick={() => navigate("/recuperarSenha", { replace: true })}>
-                              Clique aqui!
-                </span>
-              </p>
-              <p className={styles.newClientCad}>
-                              Ja tem conta?{" "}
-                <span className={styles.clickableCad} onClick={() => navigate("/LoginBan")}>
-                              Clique aqui!
-                </span>
-              </p>
-           </div>
+          <button className={styles.buttonCadastro} type="submit">
+            Cadastrar
+          </button>
+
+          <div className={styles.containerNewForgotCad}>
+            <p className={styles.newClientCad}>
+              Já tem conta?{" "}
+              <span
+                className={styles.clickableCad}
+                onClick={() => navigate("/LoginBan")}
+              >
+                Clique aqui!
+              </span>
+            </p>
+          </div>
         </div>
       </form>
     </div>

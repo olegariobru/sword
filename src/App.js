@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginBan from './Componentes/BannerLogin';
 import TelaDeEntrada from './Componentes/TelaEntrada';
+import RecuperarSenha from './Componentes/recuperarSenha';
 import { LoadingScreen } from './Componentes/Loading'; // atualizado
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/loginBan" element={<LoginBan />} />
           <Route path="/telaDeEntrada" element={<TelaDeEntrada />} />
           <Route path="/cadastroUser" element={<CadastroUser />} />
+          <Route path="/recuperarSenha" element={<RecuperarSenha />} />
         </Routes>
       )}
     </BrowserRouter>

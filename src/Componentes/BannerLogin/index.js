@@ -22,7 +22,7 @@ export default function LoginBan() {
             return;
         }
 
-        const { user, error } = await loginUser(email, senha);
+        const { error } = await loginUser(email, senha);
 
         if (error) {
             toast.error(error, {
@@ -42,10 +42,11 @@ export default function LoginBan() {
 
     return (
         <div className={styles.backBan}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}noValidate>
+
                 <div className={styles.inputsBan}>
                     <div className={styles.titBan}>
-                        <a>Center User</a>
+                        <p>Center User</p>
                     </div>
                     <input
                         type="text"

@@ -1,0 +1,85 @@
+
+  .forgotBan {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/public/Imagens/imagebackgr.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } 
+
+  .forgotSubTit{
+    font-size: 75%;
+    padding: 0;
+    color: var(--cor-primaria);
+    margin: -5% 0 10% 0;
+  }
+  
+  .forgotTitBan p {
+    font-size: 2rem;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    margin: 45% 0 0 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 150;
+    color: var(--vermelho-site);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    display: flex;
+  }
+  
+  .forgotInputBan {
+    background: var(--branco-opaco);
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100vh;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+ }
+ 
+ 
+   .inputEmail {
+     padding: 0.75rem;
+     border: none;
+     background: none;
+     border-bottom: 1px solid var(--cor-primaria);
+     font-size: 0.9rem;
+     outline: none;
+     transition: border 0.3s;
+     width: 100%;
+    }
+
+   .inputEmail:focus {
+    border-color: var(--vermelho-site);
+    }
+
+  .buttonBan2 {
+    background: var(--branco-opaco);
+    border: none;
+    margin: 15% 0 0 0;
+    padding: 0.9rem;
+    border-radius: 80px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .buttonBan2:hover {
+    background: var(--vermelho-site);
+    color: var(--branco);
+  }
+
+  .backlogon {   
+    font-size: 75%;
+    padding: 0;
+    color: var(--cor-primaria);
+    margin: -2% 0 10% 31%;
+    cursor: pointer;
+  }  

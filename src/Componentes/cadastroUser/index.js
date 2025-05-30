@@ -38,7 +38,7 @@ const CadastroUser = () => {
       return;
     }
 
-    const { user, error } = await registerUser(email, senha, nome);
+    const { error } = await registerUser(email, senha, nome);
 
     if (error) {
       toast.error(error, { position: "top-center" });
@@ -62,7 +62,7 @@ const CadastroUser = () => {
       <form onSubmit={handleSubmit} noValidate>
         <div className={styles.inputsBanCad}>
           <div className={styles.titbanCad}>
-            <a className={styles.title}>Center User</a>
+            <p className={styles.title}>Center User</p>
           </div>
 
           <input
@@ -144,6 +144,6 @@ const CadastroUser = () => {
       </form>
     </div>
   );
-};
+}
 
 export default CadastroUser;

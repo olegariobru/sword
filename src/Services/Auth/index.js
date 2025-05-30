@@ -1,7 +1,8 @@
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { auth } from "../firebase"; 
 
@@ -66,5 +67,28 @@ export const registerUser = async (email, senha, nome) => {
     }
 
     return { user: null, error: errorMessage };
+  }
+};
+
+// Função de esqueci minha senha
+export const forgotPassword = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { success: true, error: null };
+  } catch (error) {
+    let errorMessage;
+
+    switch (error.code) {
+      case 'auth/user-not-found':
+        errorMessage = 'Usuário não encontrado';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'E-mail inválido';
+        break;
+      default:
+        errorMessage = 'Erro ao enviar email de recuperação';
+    }
+
+    return { success: false, error: errorMessage };
   }
 };

@@ -1,12 +1,21 @@
 import styles from "./recuperarSenha.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { forgotPassword } from "../../Services/Auth"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const RecuperarSenha = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+
+      useEffect(() => {
+        if (!location.state?.fromLogin) {
+          navigate("/", { replace: true });
+        }
+      }, [location, navigate]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./bannerLogin.module.css";
 import { loginUser } from "../../Services/Auth";
 import { toast } from "react-toastify";
@@ -9,6 +9,13 @@ export default function LoginBan() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+    if (!location.state?.fromLogin) {
+      navigate("/", { replace: true });
+    }
+    }, [location, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,7 +42,7 @@ export default function LoginBan() {
                 position: "top-center",
                 autoClose: 2000,
                 theme: "colored",
-                onClose: () => navigate("/telaDeEntrada", { replace: true })
+                onClose: () => navigate("/telaDeEntrada", {state:{fromLogin:true}})
             });
         }
     };

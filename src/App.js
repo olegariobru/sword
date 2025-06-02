@@ -8,6 +8,7 @@ import LoginBan from './Componentes/BannerLogin';
 import TelaDeEntrada from './Componentes/TelaEntrada';
 import RecuperarSenha from './Componentes/recuperarSenha';
 import { LoadingScreen } from './Componentes/Loading'; // atualizado
+import PrivateRoute from './Services/PrivateRoutes';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,11 +36,11 @@ function App() {
         <LoadingScreen fadeOut={fadeOut} />
       ) : (
         <Routes>
-          <Route path="/" element={<PaginaHome />} />
-          <Route path="/loginBan" element={<LoginBan />} />
-          <Route path="/telaDeEntrada" element={<TelaDeEntrada />} />
-          <Route path="/cadastroUser" element={<CadastroUser />} />
-          <Route path="/recuperarSenha" element={<RecuperarSenha />} />
+          <Route path="/" element={<PrivateRoute><PaginaHome /></PrivateRoute>} />
+          <Route path="/loginBan" element={<PrivateRoute><LoginBan /></PrivateRoute>} />
+          <Route path="/telaDeEntrada" element={<PrivateRoute><TelaDeEntrada/></PrivateRoute>} />
+          <Route path="/cadastroUser" element={<PrivateRoute><CadastroUser /></PrivateRoute>} />
+          <Route path="/recuperarSenha" element={<PrivateRoute><RecuperarSenha /></PrivateRoute>} />
         </Routes>
       )}
     </BrowserRouter>

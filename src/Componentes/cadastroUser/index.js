@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { registerUser } from "../../Services/Auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./cadastrouser.module.css";
 import { toast } from "react-toastify";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -14,6 +14,13 @@ const CadastroUser = () => {
   const [visivelSenha, setVisivelSenha] = useState(false);
   const [visivelConfirmar, setVisivelConfirmar] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation
+
+    useEffect(() => {
+      if (!location.state?.fromLogin) {
+        navigate("/", { replace: true });
+      }
+    }, [location, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

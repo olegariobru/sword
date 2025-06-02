@@ -36,7 +36,7 @@ function App() {
         <LoadingScreen fadeOut={fadeOut} />
       ) : (
         <Routes>
-          <Route path="/" element={<PrivateRoute><PaginaHome /></PrivateRoute>} />
+          <Route path="/" element={<PaginaHome />} />
           <Route path="/loginBan" element={<PrivateRoute><LoginBan /></PrivateRoute>} />
           <Route path="/telaDeEntrada" element={<PrivateRoute><TelaDeEntrada/></PrivateRoute>} />
           <Route path="/cadastroUser" element={<PrivateRoute><CadastroUser /></PrivateRoute>} />

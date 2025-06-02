@@ -39,7 +39,7 @@ function App() {
           <Route path="/" element={<PaginaHome />} />
           <Route path="/loginBan" element={<PrivateRoute><LoginBan /></PrivateRoute>} />
           <Route path="/telaDeEntrada" element={<PrivateRoute><TelaDeEntrada/></PrivateRoute>} />
-          <Route path="/cadastroUser" element={<PrivateRoute><CadastroUser /></PrivateRoute>} />
+          <Route path="/cadastroUser" element={<CadastroUser />} />
           <Route path="/recuperarSenha" element={<PrivateRoute><RecuperarSenha /></PrivateRoute>} />
         </Routes>
       )}

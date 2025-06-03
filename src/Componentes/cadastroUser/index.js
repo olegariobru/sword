@@ -14,13 +14,19 @@ const CadastroUser = () => {
   const [visivelSenha, setVisivelSenha] = useState(false);
   const [visivelConfirmar, setVisivelConfirmar] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation
+  const location = useLocation();
+  
+  
+  useEffect(() => {
+  const fromLogin = location.state?.fromLogin;
+  const isRoot = location.pathname === "/";
 
-    useEffect(() => {
-      if (!location.state?.fromLogin) {
-        navigate("/", { replace: true });
-      }
-    }, [location, navigate]);
+  if (!fromLogin && !isRoot) {
+    navigate("/", { replace: true });
+    }
+  }, [location.pathname, location.state, navigate]);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

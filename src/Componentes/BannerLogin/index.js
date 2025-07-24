@@ -47,12 +47,12 @@ export default function LoginBan() {
         position: "top-center",
         autoClose: 2000,
         theme: "colored",
-        onClose: () => navigate("/telaDeEntrada", { state: { fromLogin: true } }),
+          onClose: () => navigate("/telaDeEntrada", { state: { fromLogin: true }, replace:true }),
       });
     }
   };
 
-  // Se estiver mostrando o cadastro
+  
   if (mostrarCadastro) {
     return (
       <div className={styles.backBan}>
@@ -61,7 +61,7 @@ export default function LoginBan() {
     );
   }
 
-  // Se estiver mostrando o recuperar senha
+  
   if (mostrarRecuperarSenha) {
     return (
       <div className={styles.backBan}>
@@ -70,7 +70,7 @@ export default function LoginBan() {
     );
   }
 
-  // Tela de login padrão
+  
   return (
     <div className={styles.backBan}>
       <form onSubmit={handleSubmit} noValidate>
@@ -102,7 +102,7 @@ export default function LoginBan() {
               Esqueceu sua senha?{" "}
               <span
                 className={styles.clickable}
-                onClick={() => setMostrarRecuperarSenha(true)} // ativando tela recuperar senha
+                onClick={() => setMostrarRecuperarSenha(true)} 
               >
                 Clique aqui!
               </span>

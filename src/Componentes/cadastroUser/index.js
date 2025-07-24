@@ -22,7 +22,7 @@ const CadastroUser = () => {
   const isRoot = location.pathname === "/";
 
   if (!fromLogin && !isRoot) {
-    navigate("/", { replace: true });
+    navigate("/LoginBan", { replace: true });
     }
   }, [location.pathname, location.state, navigate]);
 

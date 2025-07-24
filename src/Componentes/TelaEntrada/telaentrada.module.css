@@ -1,0 +1,87 @@
+.headerCab {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Botão hambúrguer */
+.navBurger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 101;
+  width: 30px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* As 3 barrinhas */
+.navBurger span {
+  height: 4px;
+  width: 100%;
+  background-color: var(--cor-fonte-titulos);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Estado animado para "X" */
+.navBurgerAtivo span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+  background-color: var(--cor-fonte-titulos);
+}
+
+.navBurgerAtivo span:nth-child(2) {
+  opacity: 0;
+}
+
+.navBurgerAtivo span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+  background-color: var(--cor-fonte-titulos);
+}
+
+/* Menu lateral */
+.sideMenu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--preto);
+  color: var(--branco);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease;
+  z-index: 100;
+}
+
+
+/* Ativo (mostra o menu) */
+.ativo {
+  left: 0;
+}
+
+/* Links do menu */
+.sideMenu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sideMenu nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.mainContent h1{
+    display: flex;
+    justify-content: center;
+    font-family: var(--fonte-titulos2);
+    margin: 1%;
+    font-weight: 100;
+}

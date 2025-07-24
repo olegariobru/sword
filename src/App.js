@@ -7,8 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoginBan from './Componentes/BannerLogin';
 import TelaDeEntrada from './Componentes/TelaEntrada';
 import RecuperarSenha from './Componentes/recuperarSenha';
-import { LoadingScreen } from './Componentes/Loading'; // atualizado
+import { LoadingScreen } from './Componentes/Loading';
 import PrivateRoute from './Services/PrivateRoutes';
+import PublicRoute from './Services/PublicRoutes'; // ⬅️ importado
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -16,12 +17,12 @@ function App() {
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
-      setFadeOut(true); // inicia o fadeOut
-    }, 1500); // depois de 1,5s começa o fadeOut
+      setFadeOut(true);
+    }, 1500);
 
     const timer2 = setTimeout(() => {
-      setLoading(false); // remove o loading após o fadeOut
-    }, 2000); // fadeOut dura 0.5s
+      setLoading(false);
+    }, 2000);
 
     return () => {
       clearTimeout(timer1);
@@ -36,11 +37,48 @@ function App() {
         <LoadingScreen fadeOut={fadeOut} />
       ) : (
         <Routes>
-          <Route path="/" element={<PaginaHome />} /> {/*preciso ajustar isso na URL*/}
-          <Route path="/loginBan" element={<LoginBan />} />
-          <Route path="/telaDeEntrada" element={<PrivateRoute><TelaDeEntrada/></PrivateRoute>} />
-          <Route path="/cadastroUser" element={<CadastroUser />} />
-          <Route path="/recuperarSenha" element={<RecuperarSenha />} />
+       <Route path="/" element={
+          
+            <PaginaHome />
+          
+        } />
+
+
+          {/* ⛔ Acesso restrito para logados */}
+          <Route
+            path="/loginBan"
+            element={
+              <PublicRoute>
+                <LoginBan />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/cadastroUser"
+            element={
+              <PublicRoute>
+                <CadastroUser />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/recuperarSenha"
+            element={
+              <PublicRoute>
+                <RecuperarSenha />
+              </PublicRoute>
+            }
+          />
+
+          {/* ✅ Apenas para usuários autenticados */}
+          <Route
+            path="/telaDeEntrada"
+            element={
+              <PrivateRoute>
+                <TelaDeEntrada />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       )}
     </BrowserRouter>

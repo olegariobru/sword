@@ -40,7 +40,7 @@ const RecuperarSenha = () => {
   };
 
   const voltarLogin = () => {
-    navigate("/loginBan");
+    navigate("/loginBan", {replace : true});
   }
 
   return (
@@ -65,6 +65,7 @@ const RecuperarSenha = () => {
             <p onClick={voltarLogin} className={styles.backlogon}>Voltar a tela de login</p>
         </div>
       </form>
+
     </div>
   );
 };

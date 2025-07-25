@@ -69,13 +69,39 @@
 .sideMenu nav {
   display: flex;
   flex-direction: column;
+  margin: 100% 0 0 50%;
   gap: 20px;
 }
 
 .sideMenu nav a {
-  color: white;
+  color: var(--branco);
+  font-family: var(--fonte-paragrafos);
   text-decoration: none;
   font-size: 18px;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.sideMenu nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--cor-fonte-titulos);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  transform-origin: center;
+}
+
+.sideMenu nav a:hover{  
+  color: var(--cor-fonte-titulos);
+}
+
+.sideMenu nav a:hover::after {
+  width: 100%;
 }
 
 .mainContent h1{
@@ -84,4 +110,27 @@
     font-family: var(--fonte-titulos2);
     margin: 1%;
     font-weight: 100;
+}
+
+
+.btnPost{
+  position: relative;
+  display: flex;
+  margin: 15% 0 0 45%;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--preto);
+  font-family: var(--fonte-paragrafos);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnPost:hover{
+  background-color: var(--branco);
+  transform: scale(1.05);
+  border: 0.7px solid var(--cor-fonte-titulos);
 }

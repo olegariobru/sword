@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./telaentrada.module.css";
+import { MdOutlinePostAdd } from "react-icons/md";
 
 export default function TelaDeEntrada() {
   const location = useLocation();
@@ -18,6 +19,7 @@ export default function TelaDeEntrada() {
   };
 
   return (
+  <div>
     <div className={styles.headerCab}>
      <button
         className={`${styles.navBurger} ${menuAtivo ? styles.navBurgerAtivo : ""}`}
@@ -30,19 +32,24 @@ export default function TelaDeEntrada() {
 
       <div className={`${styles.sideMenu} ${menuAtivo ? styles.ativo : ""}`}>
         <nav>
-          <a href="#">About</a>
-          <a href="#">Portfolio</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
+          <a href="#">Home</a>
+          <a href="#">Perfil</a>
+          <a href="#">Serviços</a>
+          <a href="#">Contato</a>
         </nav>
       </div>
-
-
 
       
       <div className={styles.mainContent}>
         <h1>CenterUser</h1>
       </div>
     </div>
+    
+    <div className={styles.newPost}>
+      <button className={styles.btnPost}><MdOutlinePostAdd size={20} style={{ marginRight: "8px" }} />New post</button>
+
+
+    </div>
+  </div>
   );
 }

@@ -113,24 +113,64 @@
 }
 
 
+.newPost{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 15%;
+}
+
+.newPost > * {
+  margin-bottom: 16px;
+}
+
+.titPos{
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 100;
+  color: #333;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInText 2.5s ease forwards;
+
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .btnPost{
   position: relative;
   display: flex;
-  margin: 15% 0 0 45%;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
   padding: 12px 24px;
   font-size: 16px;
-  font-weight: 300;
   color: var(--preto);
   font-family: var(--fonte-paragrafos);
   border: none;
   border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: var(--cinza-claro); /* ou transparente, como desejar */
+  transition: 
+    background-color 0.4s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border 0.3s ease;
 }
 
 .btnPost:hover{
   background-color: var(--branco);
   transform: scale(1.05);
-  border: 0.7px solid var(--cor-fonte-titulos);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }

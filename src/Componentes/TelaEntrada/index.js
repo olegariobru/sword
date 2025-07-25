@@ -46,6 +46,7 @@ export default function TelaDeEntrada() {
     </div>
     
     <div className={styles.newPost}>
+      <p className={styles.titPos}>Como está se sentindo hoje?</p>
       <button className={styles.btnPost}><MdOutlinePostAdd size={20} style={{ marginRight: "8px" }} />New post</button>
 
 
